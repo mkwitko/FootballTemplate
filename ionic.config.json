@@ -1,0 +1,7 @@
+{
+  "name": "FootballTemplate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
