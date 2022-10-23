@@ -1,0 +1,22 @@
+div {
+    height: 100%;
+    ion-item {
+        --background: rgba(255, 255, 255, 0.2);
+        --border-radius: 10px;
+        ion-input {
+            --color: #000;
+        }
+    }
+}
+
+.logo {
+    height: 17vh;
+    width: auto;
+}
+
+ion-slides {
+    min-height: 60vh;
+    ion-slide {
+        min-height: 100%;
+    }
+}

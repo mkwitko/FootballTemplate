@@ -1,0 +1,17 @@
+.slide-banner {
+  margin-top: 2vh;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+
+  ion-slides {
+    height: 20vh;
+
+    ion-slide {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+    }
+  }
+}

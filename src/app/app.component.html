@@ -1,3 +1,46 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <ion-split-pane contentId="menu-content" when="xl">
+        <ion-menu class="menu" contentId="menu-content" side="start" type="overlay">
+            <ion-content>
+                <div class="menu-header-bg"></div>
+
+                <ng-container *ngIf="userClass.get()">
+                    <div class="header-content">
+                        <p class="ion-margin ion-text-start">v{{version}}</p>
+                        <div class="profile">
+                            <ion-avatar>
+                                <ng-container *ngIf="userClass.get().avatar">
+                                    <img src={{userClass.get().avatar}} alt="">
+                                </ng-container>
+                                <ng-container *ngIf="!userClass.get().avatar">
+                                    <img src="../../../../assets/img/default-user.png" alt="">
+                                </ng-container>
+                            </ion-avatar>
+                            <p *ngIf="userClass.get().userName" class="ion-text-center nome">{{userClass.get().userName}}</p>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ion-list lines="none">
+                    <ng-container *ngFor="let a of whiteLabel.app.menu">
+                        <ion-item color="white" class="ion-margin-top" [disabled]="a.disabled" (click)="goTo(a.url)">
+                            <ion-icon color="white" slot="start" name={{a.icone}}></ion-icon>
+                            <ion-label color="white">{{a.nome}}</ion-label>
+                            <!-- <ng-container *ngIf="a.badge">
+                              <ion-badge *ngIf="youtubeApi.getLive()" ngClass="{{youtubeApi.getLive().snippet.liveBroadcastContent}}" mode="ios">{{youtubeApi.getLive().snippet.liveBroadcastContent === youtubeApi.getIsUpcoming() ? 'Em Breve' : 'Ao Vivo'}}</ion-badge>
+                          </ng-container> -->
+                        </ion-item>
+                    </ng-container>
+                </ion-list>
+            </ion-content>
+            <ion-footer>
+                <ion-toolbar>
+                    <ion-button (click)="logout()" expand="block" fill="clear" shape="round">
+                        <ion-label color="danger">LOGOUT</ion-label>
+                    </ion-button>
+                </ion-toolbar>
+            </ion-footer>
+        </ion-menu>
+        <ion-router-outlet id="menu-content"></ion-router-outlet>
+    </ion-split-pane>
 </ion-app>

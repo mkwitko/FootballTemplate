@@ -1,0 +1,20 @@
+<div (click)="goTo(info.data)" class="container-noticia">
+    <ion-card>
+        <img src={{info.data.downUrl}} />
+        <ion-card-header>
+            <ion-card-title>
+                <p class="titulo-noticia">
+                    {{ (info.data.titulo.length>40)? (info.data.titulo | slice:0:40)+'...':(info.data.titulo) }}
+                </p>
+            </ion-card-title>
+            <ion-card-subtitle>
+                <p class="horario">{{info.data.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <p class="texto-noticia">
+                {{ (info.data.texto.length>100)? (info.data.texto | slice:0:100)+'...':(info.data.texto) }}
+            </p>
+        </ion-card-content>
+    </ion-card>
+</div>

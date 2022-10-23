@@ -1,0 +1,65 @@
+<p class="ion-text-center titulo">Partidas</p>
+<div class="div-partidas">
+    <ion-slides [options]="slideOpts">
+        <ng-container *ngFor="let a of matches; let i = index">
+            <ion-slide *ngIf="a">
+                <ng-container *ngIf="a.match_status !== 'Finished'">
+                    <ion-grid>
+                        <ion-row class="painel-placar">
+                            <ion-col size="3">
+                                <img class="logo" src={{a.team_home_badge}} alt="">
+                                <p class="nome-time">{{a.match_hometeam_name}}</p>
+                            </ion-col>
+                            <ion-col size="6">
+                                <p class="nome-liga">{{a.league_name}}</p>
+                                <p class="nome-estadio"> {{ (a.match_stadium.length>30)? (a.match_stadium | slice:0:30)+'...':(a.match_stadium) }}</p>
+                                <p class="data">{{a.match_date | date: 'dd/MM/yyyy'}}</p>
+                                <div class="div-horario">
+                                    <p class="horario">{{a.match_time}}</p>
+                                </div>
+                            </ion-col>
+                            <ion-col size="3">
+                                <img class="logo" src={{a.team_away_badge}} alt="">
+                                <p class="nome-time">{{a.match_awayteam_name}}</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ng-container>
+                <ng-container *ngIf="a.match_status === 'Finished'">
+                    <ion-grid>
+                        <ion-row class="painel-placar">
+                            <ion-col size="3">
+                                <img class="logo" src={{a.team_home_badge}} alt="">
+                                <p class="nome-time">{{a.match_hometeam_name}}</p>
+                            </ion-col>
+                            <ion-col size="6">
+                                <p class="nome-liga">{{a.league_name}}</p>
+                                <p class="nome-estadio"> {{ (a.match_stadium.length>30)? (a.match_stadium | slice:0:30)+'...':(a.match_stadium) }}</p>
+                                <p class="data">{{a.match_date | date: 'dd/MM/yyyy'}}</p>
+                                <div>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col class="placar-div" size="5">
+                                                <p class="placar">{{a.match_hometeam_score}}</p>
+                                            </ion-col>
+                                            <ion-col size="2">
+
+                                            </ion-col>
+                                            <ion-col class="placar-div" size="5">
+                                                <p class="placar">{{a.match_awayteam_score}}</p>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </div>
+                            </ion-col>
+                            <ion-col size="3">
+                                <img class="logo" src={{a.team_away_badge}} alt="">
+                                <p class="nome-time">{{a.match_awayteam_name}}</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ng-container>
+            </ion-slide>
+        </ng-container>
+    </ion-slides>
+</div>
