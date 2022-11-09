@@ -1,7 +1,14 @@
 <app-header></app-header>
 
 <ion-content>
-
+    <app-ad [fixed]="true" [ads]="adsClass.get()"></app-ad>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let item of wl.app.services">
+                <app-club-card [item]="item"></app-club-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
 
 <app-tab></app-tab>

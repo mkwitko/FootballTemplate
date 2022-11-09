@@ -1,7 +1,47 @@
-<app-header></app-header>
+<app-header url="profile"></app-header>
 
-<ion-content>
+<ion-content *ngIf="userClass.get()">
+    <div class="profile">
+        <ion-avatar>
+            <ng-container *ngIf="userClass.get().avatar">
+                <img src={{userClass.get().avatar}} alt="">
+            </ng-container>
+            <ng-container *ngIf="!userClass.get().avatar">
+                <img src="../../../../assets/img/default-user.png" alt="">
+            </ng-container>
+        </ion-avatar>
+    </div>
 
+
+    <input #file hidden class="color" accept="image/*" type="file" (change)="choose($event)">
+
+    <div class="container">
+        <!-- <ion-button (click)="file.click()" expand="block" fill="clear">
+            Alterar Foto
+        </ion-button> -->
+
+        <div>
+            <p class="color titulo">Nome</p>
+            <ion-input class="color valor" type="text" [(ngModel)]="userClass.getEdit().userName"></ion-input>
+        </div>
+        <div>
+            <p class="color titulo">E-mail</p>
+            <ion-input disabled class="color valor" type="text" [(ngModel)]="userClass.getEdit().userEmail"></ion-input>
+        </div>
+        <div>
+            <p class="color titulo">Celular</p>
+            <ion-input class="color valor" type="text" [(ngModel)]="userClass.getEdit().telefone"></ion-input>
+        </div>
+        <div>
+            <p class="color titulo">CPF</p>
+            <ion-input class="color valor" type="text" [(ngModel)]="userClass.getEdit().cpf"></ion-input>
+        </div>
+
+        <ion-button class="ion-margin-top" (click)="salvar()" expand="block">
+            Salvar
+        </ion-button>
+        <ion-button (click)="voltar()" expand="block" fill="clear" shape="round">
+            Voltar
+        </ion-button>
+    </div>
 </ion-content>
-
-<app-tab></app-tab>

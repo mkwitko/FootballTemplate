@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<ion-content [scrollEvents]="true">
+    <ng-container *ngIf="football.games && football.games.length > 0">
+        <ng-container *ngFor="let item of football.games">
+            <app-card-game [slider]="false" [matches]="item"></app-card-game>
+        </ng-container>
+        <!-- <ion-grid fixed>
+            <div *ngFor="let a of football.finished(football.games)" class="div-partidas margin-side margin-up-down">
+                <div [id]="a.match_id">
+                    <ion-row class="painel-placar">
+                        <ion-col size="3">
+                            <img class="logo center" src={{a.team_home_badge}} alt="">
+                            <p class="nome-time ion-text-center">{{a.match_hometeam_name}}</p>
+                        </ion-col>
+                        <ion-col size="6">
+                            <p class="nome-liga">{{a.league_name}}</p>
+                            <p class="nome-estadio ion-text-center"> {{ (a.match_stadium.length>30)? (a.match_stadium | slice:0:30)+'...':(a.match_stadium) }}</p>
+                            <p class="data">{{a.match_date | date: 'dd/MM/yyyy'}}</p>
+                            <div>
+                                <ion-grid>
+                                    <ion-row>
+                                        <ion-col size="5">
+                                            <p class="placar">{{a.match_hometeam_score}}</p>
+                                        </ion-col>
+                                        <ion-col size="2">
+
+                                        </ion-col>
+                                        <ion-col size="5">
+                                            <p class="placar">{{a.match_awayteam_score}}</p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </div>
+                        </ion-col>
+                        <ion-col size="3">
+                            <img class="logo center" src={{a.team_away_badge}} alt="">
+                            <p class="nome-time ion-text-center">{{a.match_awayteam_name}}</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </div>
+            <div *ngFor="let a of football.notFinished(football.games); let i = index" class="div-partidas margin-side margin-up-down">
+                <div [id]="a.match_id">
+                    <ion-row class="painel-placar">
+                        <ion-col size="3">
+                            <img class="logo center" src={{a.team_home_badge}} alt="">
+                            <p class="nome-time ion-text-center">{{a.match_hometeam_name}}</p>
+                        </ion-col>
+                        <ion-col size="6">
+                            <p class="nome-liga">{{a.league_name}}</p>
+                            <p class="nome-estadio ion-text-center"> {{ (a.match_stadium.length>30)? (a.match_stadium | slice:0:30)+'...':(a.match_stadium) }}</p>
+                            <p class="data">{{a.match_date | date: 'dd/MM/yyyy'}}</p>
+                            <div class="div-horario">
+                                <p class="horario">{{a.match_time}}</p>
+                            </div>
+                        </ion-col>
+                        <ion-col size="3">
+                            <img class="logo center" src={{a.team_away_badge}} alt="">
+                            <p class="nome-time ion-text-center">{{a.match_awayteam_name}}</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </div>
+        </ion-grid> -->
+    </ng-container>
+</ion-content>
+
+<app-tab></app-tab>

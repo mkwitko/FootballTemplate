@@ -1,0 +1,12 @@
+<div *ngIf="build">
+    <img src={{build.downUrl}} alt="">
+    <p class="horario-noticia margin-left">{{build.date | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+    <p class="titulo-noticia margin-left margin-right">{{build.title}}</p>
+    <p class="texto-noticia margin-left margin-right">{{(build.text)}}</p>
+    <ng-container *ngIf="build.link">
+        <ion-button class="ver-mais margin-left margin-right margin-top" (click)="verMais(build.link)" expand="block" color="dark">
+            <ion-label>Saiba Mais</ion-label>
+        </ion-button>
+    </ng-container>
+    <div class="ion-margin-top ion-margin-bottom"></div>
+</div>

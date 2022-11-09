@@ -1,0 +1,65 @@
+<app-header></app-header>
+
+<ion-content>
+    <!-- <ng-container *ngIf="youtube.getLive()">
+        <ng-container *ngIf="youtube.getLive().length > 0">
+            <ng-container *ngIf="youtube.getLive().snippet.liveBroadcastContent === youtube.getIsLive()">
+                <ion-card class="live-card">
+                    <iframe [src]="youtube.getLive().id.videoId" title="{{youtube.getLive().snippet.title}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <ion-card-content>
+                        {{youtube.getLive().snippet.description}}
+                    </ion-card-content>
+                </ion-card>
+            </ng-container>
+        </ng-container>
+    </ng-container> -->
+
+    <ion-segment (ionChange)="segmentChanged($event)" value={{segment}}>
+        <ion-segment-button value="youtube">
+            <ion-label>TV Papo</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value='exclusivo'>
+            <ion-label>Exclusivo</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <ng-container *ngIf="segment === 'youtube'">
+        <ng-container *ngFor="let a of youtube.channel">
+            <ion-card class="playlist" button (click)="clickPlaylist(a)">
+                <ion-grid fixed>
+                    <ion-row>
+                        <ion-col class="flex" size="4">
+                            <ion-avatar>
+                                <img src="../../../../assets/img/icone_youtube.png" alt="">
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="8">
+                            <ion-card-header>
+                                <ion-card-subtitle>{{a.snippet.channelTitle}}</ion-card-subtitle>
+                                <ion-card-title>{{a.snippet.title}}</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+                                {{ (a.snippet.description.length>100)? (a.snippet.description | slice:0:100)+'...':(a.snippet.description) }}
+                            </ion-card-content>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="segment === 'exclusivo'">
+        <ng-container *ngFor="let a of youtube.exclusive">
+            <ion-card>
+                <ion-card-header>
+                    <iframe [src]="a.snippet.resourceId.videoId" title="{{a.snippet.title}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </ion-card-header>
+                <ion-card-content>
+                    {{a.snippet.description}}
+                </ion-card-content>
+            </ion-card>
+        </ng-container>
+    </ng-container>
+</ion-content>
+
+<app-tab></app-tab>

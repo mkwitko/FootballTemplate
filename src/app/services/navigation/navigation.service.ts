@@ -16,6 +16,10 @@ export class NavigationService {
     private safe: SafeUrlService
   ) {}
 
+  getRoute() {
+    return this.router.url;
+  }
+
   goTo(url: string) {
     this.router.navigateByUrl(url);
   }

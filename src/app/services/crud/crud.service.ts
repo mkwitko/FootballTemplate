@@ -129,7 +129,6 @@ export class CrudService {
           reject(false);
         }
       } else {
-        console.log('Else ');
         reject(false);
       }
     });

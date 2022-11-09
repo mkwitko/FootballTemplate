@@ -1,0 +1,26 @@
+.profile {
+    height: 30%;
+    ion-avatar {
+        height: 20vh;
+        width: 20vh;
+        display: block;
+        margin: auto;
+        margin-top: 4vh;
+        border: var(--ion-color-primary) 2.5px solid;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+}
+
+.container {
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+}
+
+.titulo {
+    font-family: 'Master-Bold';
+}
+
+.color {
+    color: var(--ion-color-primary);
+}

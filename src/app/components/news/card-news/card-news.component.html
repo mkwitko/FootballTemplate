@@ -1,20 +1,26 @@
-<div (click)="goTo(info.data)" class="container-noticia">
-    <ion-card>
-        <img src={{info.data.downUrl}} />
-        <ion-card-header>
-            <ion-card-title>
-                <p class="titulo-noticia">
-                    {{ (info.data.titulo.length>40)? (info.data.titulo | slice:0:40)+'...':(info.data.titulo) }}
-                </p>
-            </ion-card-title>
+<ng-container *ngIf="build.id">
+    <div (click)="goTo(build)" class="container-noticia">
+        <ion-card>
+            <img src={{build.image}} />
+            <ion-card-header>
+                <ion-card-title>
+                    <p *ngIf="!whiteLabel.app.isWordpress" class="titulo-noticia">
+                        {{ (build.title.length>40)? (build.title | slice:0:40)+'...':(build.title) }}
+                    </p>
+                    <p *ngIf="whiteLabel.app.isWordpress" class="titulo-noticia" [innerHtml]="
+                    (build.title.length>40)? (build.title | slice:0:40)+'...':(build.title)
+                    "></p>
+                </ion-card-title>
+            </ion-card-header>
             <ion-card-subtitle>
-                <p class="horario">{{info.data.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+                <p class="horario">{{build.date | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
             </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-            <p class="texto-noticia">
-                {{ (info.data.texto.length>100)? (info.data.texto | slice:0:100)+'...':(info.data.texto) }}
-            </p>
-        </ion-card-content>
-    </ion-card>
-</div>
+            <ion-card-content>
+                <p *ngIf="!whiteLabel.app.isWordpress" class="texto-noticia">
+                    {{ (build.text.length>100)? (build.text | slice:0:100)+'...':(build.text) }}
+                </p>
+                <p *ngIf="whiteLabel.app.isWordpress" class="texto-noticia" [innerHtml]="(build.text.length>100)? (build.text | slice:0:100)+'...':(build.text)"></p>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ng-container>

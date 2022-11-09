@@ -1,5 +1,7 @@
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { WhiteLabelService } from 'src/app/services/white-label/white-label.service';
+import { type } from 'os';
 
 @Component({
   selector: 'app-card-news',
@@ -9,12 +11,43 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardNewsComponent implements OnInit {
   @Input() info;
 
-  constructor(private navigation: NavigationService) {}
+  public build = {
+    id: '',
+    image: '',
+    title: '',
+    date: '',
+    text: '',
+  };
+  constructor(
+    private navigation: NavigationService,
+    public whiteLabel: WhiteLabelService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.builder();
+  }
+
+  builder() {
+    if (this.whiteLabel.app.isWordpress) {
+      this.build = {
+        id: this.info.id,
+        image: this.info.yoast_head_json.og_image[0].url,
+        title: this.info.content.rendered,
+        date: this.info.date,
+        text: this.info.content.rendered,
+      };
+    } else {
+      this.build = {
+        id: this.info.data,
+        image: this.info.data.downUrl,
+        title: this.info.data.titulo,
+        date: this.info.data.createdAt,
+        text: this.info.data.texto,
+      };
+    }
+  }
 
   goTo(info) {
-    console.log(info);
     this.navigation.rotaId('news-details', info.id);
   }
 }

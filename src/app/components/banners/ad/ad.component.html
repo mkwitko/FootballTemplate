@@ -1,10 +1,15 @@
 <div class="slide-banner">
-    <ion-slides [options]="fixed ? fixedOpts : moveableOpts" mode="ios">
-        <ng-container *ngFor="let x of ads">
-            <ng-container *ngIf="x.onOff">
-                <ion-slide (click)="x.link ? away(x.link) : goTo(x.router)">
-                    <img src={{x.downUrl}} alt="">
-                </ion-slide>
+    <ng-container *ngIf="ads.length === 0">
+        <app-skeleton-banner></app-skeleton-banner>
+    </ng-container>
+    <ion-slides *ngIf="ads.length > 0" [options]="fixed ? fixedOpts : moveableOpts">
+        <ng-container>
+            <ng-container *ngFor="let x of ads">
+                <ng-container *ngIf="x.onOff">
+                    <ion-slide (click)="x.link ? away(x.link) : goTo(x.router)">
+                        <img src={{x.downUrl}} alt="">
+                    </ion-slide>
+                </ng-container>
             </ng-container>
         </ng-container>
     </ion-slides>

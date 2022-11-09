@@ -1,0 +1,21 @@
+<ion-card [id]="build.id">
+    <div button (click)="goTo(build)">
+        <img class="capa-noticia" src={{build.image}} alt="">
+        <p class="horario-noticia margin-left">{{build.date | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+        <p *ngIf="!whiteLabel.app.isWordpress" class="titulo-noticia margin-left margin-right">
+            {{ (build.title.length>55)? (build.title | slice:0:55)+'...':(build.title) }}</p>
+        <p *ngIf="!whiteLabel.app.isWordpress" class="texto-noticia margin-left margin-right">
+            {{ (build.text.length>150)? (build.text | slice:0:150)+'...':(build.text) }}
+        </p>
+
+        <p *ngIf="whiteLabel.app.isWordpress" class="titulo-noticia margin-left margin-right" [innerHtml]="
+        (build.title.length>55)? (build.title | slice:0:55)+'...':(build.title)
+        "></p>
+
+        <p *ngIf="whiteLabel.app.isWordpress" class="texto-noticia margin-left margin-right" [innerHtml]="(build.text.length>150)? (build.text | slice:0:150)+'...':(build.text)"></p>
+    </div>
+    <ion-button disabled={{!build.link}} (click)="compartilhar(build.link)" class="botao-compartilhar margin-left" fill="clear" shape="round">
+        <p color="primary">COMPARTILHAR</p>
+        <ion-icon color="primary" slot="end" name="share"></ion-icon>
+    </ion-button>
+</ion-card>

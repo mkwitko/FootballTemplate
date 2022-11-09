@@ -1,7 +1,28 @@
 <app-header></app-header>
 
 <ion-content>
+    <ng-container *ngIf="!newsClass.get() || newsClass.get().length === 0">
+        <ng-container *ngFor="let item of [0,1,2,3]">
+            <app-skeleton-banner></app-skeleton-banner>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="newsClass.get() && newsClass.get().length > 0">
 
+        <ng-container *ngFor="let a of newsClass.get()">
+            <app-full-card-news [info]="a"></app-full-card-news>
+        </ng-container>
+
+        <ion-infinite-scroll (ionInfinite)="loadData($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando notícias...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+        <ion-fab (click)="goToTop()" vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button color="light">
+                <ion-icon color="primary" name="caret-up-circle-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </ng-container>
 </ion-content>
 
 <app-tab></app-tab>

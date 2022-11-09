@@ -105,7 +105,6 @@ export class AuthService {
             user.password.trim()
           )
             .then((res) => {
-              console.log('add user - ', res);
               this.userClass.addUser(user, res.user.uid);
             })
             .catch((err) => {

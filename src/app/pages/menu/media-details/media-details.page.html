@@ -1,0 +1,17 @@
+<app-header url="media"></app-header>
+
+<ion-content>
+    <p class="ion-text-center">Playlists Oficias</p>
+    <ng-container *ngFor="let a of allVideos">
+        <ion-card>
+            <ion-card-header>
+                <iframe [src]="a.snippet.resourceId.videoId" title="{{a.snippet.title}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </ion-card-header>
+            <ion-card-content>
+                {{a.snippet.description}}
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
+</ion-content>
+
+<app-tab></app-tab>

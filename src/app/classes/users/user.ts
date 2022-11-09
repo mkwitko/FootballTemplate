@@ -40,6 +40,10 @@ export class UserClass {
     if (withEdit) this.setEdit(value);
   }
 
+  setPicture(value) {
+    this.userEdit.avatar = value;
+  }
+
   getEdit() {
     return this.userEdit;
   }

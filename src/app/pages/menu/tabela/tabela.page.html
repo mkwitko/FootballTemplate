@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<ion-content>
+    <ng-container *ngIf="football.ready">
+        <ng-container *ngIf="football.getInfoObj()">
+            <app-top-info [obj]="football.getInfoObj()"></app-top-info>
+        </ng-container>
+
+        <ion-segment (ionChange)="segmentChanged($event)" value={{segment}}>
+            <ion-segment-button value="liga">
+                <ion-label>Nacional</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value='regional'>
+                <ion-label>Regional</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <ng-container *ngIf="football.getActiveTable()">
+            <ng-container *ngIf="football.getActiveTable().length > 0">
+                <div class="tabela ion-margin-top">
+                    <ion-grid>
+                        <ion-row class="header-tabela">
+                            <ion-col size="6">
+                                <p>Classificação</p>
+                            </ion-col>
+                            <ion-col size="1">
+                                <p>PG</p>
+                            </ion-col>
+                            <ion-col class="text-align" size="1">
+                                <p>J</p>
+                            </ion-col>
+                            <ion-col class="text-align" size="1">
+                                <p>V</p>
+                            </ion-col>
+                            <ion-col class="text-align" size="1">
+                                <p>E</p>
+                            </ion-col>
+                            <ion-col class="text-align" size="1">
+                                <p>D</p>
+                            </ion-col>
+                            <ion-col class="text-align" size="1">
+                                <p>SG</p>
+                            </ion-col>
+                        </ion-row>
+                        <ng-container>
+                            <div *ngFor="let a of football.getActiveTable(); let i = index">
+                                <ion-row class="posicoes">
+                                    <ion-col size="1">
+                                        <p class="posicao text-align">{{a.overall_league_position}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <img src="{{a.team_badge}}" alt="">
+                                    </ion-col>
+                                    <ion-col size="4">
+                                        <p class="nomes">{{a.team_name}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <p class="param">{{a.overall_league_PTS}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <p class="param">{{a.overall_league_payed}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <p class="param">{{a.overall_league_W}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <p class="param">{{a.overall_league_D}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <p class="param">{{a.overall_league_L}}</p>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <p class="param">{{a.overall_league_GF - a.overall_league_GA}}</p>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                        </ng-container>
+                    </ion-grid>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ion-content>
+
+<app-tab></app-tab>

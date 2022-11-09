@@ -5,6 +5,15 @@ import { Injectable } from '@angular/core';
 import { PushService } from '../push/push.service';
 import { UpdateInterface } from 'src/app/interfaces/update/update-interface';
 import { UserClass } from 'src/app/classes/users/user';
+import { UpdateManager } from 'src/app/interfaces/managers/update-manager';
+import { UpdateManagerClass } from 'src/app/classes/updateManager/update-manager';
+import { Banners } from 'src/app/classes/banners/banners';
+import { News } from 'src/app/classes/news/news';
+import { Ads } from 'src/app/classes/ads/ads';
+import { WhiteLabelService } from '../white-label/white-label.service';
+import { WordpressService } from '../apis/wordpress/wordpress.service';
+import { FootballService } from '../apis/football/football.service';
+import { YoutubeService } from '../apis/youtube/youtube.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +22,20 @@ export class MasterService {
   constructor(
     private master: MasterHelperService,
     private auth: AuthService,
-    private userClass: UserClass
+    private userClass: UserClass,
+    private updateManager: UpdateManagerClass,
+    private bannerClass: Banners,
+    private newsClass: News,
+    private adsClass: Ads,
+    private whiteLabel: WhiteLabelService,
+    private wordpress: WordpressService,
+    private football: FootballService,
+    private youtube: YoutubeService
   ) {}
 
   setUser(id: string) {
     this.master
-      .setClass(
+      .setClassById(
         id,
         true,
         this.userClass.cachePathMyUser,
@@ -47,71 +64,66 @@ export class MasterService {
     return data;
   }
 
-  // checkUpdate(shouldUpdate: UpdateInterface): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     const data = this.makeUpdate(shouldUpdate);
-  //     console.log(data);
-  //     let shouldUpdateFinal: any = [];
-  //     const oldData = this.updateManager.getOld();
-  //     if (oldData && Object.keys(data).length > 0) {
-  //       data.Banner !== oldData.Banner
-  //         ? (shouldUpdateFinal.Banner = true)
-  //         : (shouldUpdateFinal.Banner = false);
+  checkUpdate(shouldUpdate: UpdateInterface): Promise<any> {
+    return new Promise((resolve) => {
+      const data = this.makeUpdate(shouldUpdate);
+      let shouldUpdateFinal: any = [];
+      const oldData = this.updateManager.getOld();
+      if (oldData && Object.keys(data).length > 0) {
+        Object.entries(data).forEach((e) => {
+          data[e[0]] !== oldData[e[0]]
+            ? (shouldUpdateFinal[e[0]] = true)
+            : (shouldUpdateFinal[e[0]] = false);
+        });
+        resolve(shouldUpdateFinal);
+      } else {
+        resolve(false);
+      }
+    });
+  }
 
-  //       data.Conveniencia !== oldData.Conveniencia
-  //         ? (shouldUpdateFinal.Conveniencia = true)
-  //         : (shouldUpdateFinal.Conveniencia = false);
+  set(api = true) {
+    this.updateManager.setClass().then((shouldUpdate) => {
+      this.checkUpdate(shouldUpdate).then((res: UpdateBoolean) => {
+        this.master
+          .setClassAll(
+            shouldUpdate !== false ? res.banner : false,
+            this.bannerClass.path,
+            this.bannerClass.collection
+          )
+          .then((banners) => {
+            this.bannerClass.set(banners);
+          });
 
-  //       data.Elenco !== oldData.Elenco
-  //         ? (shouldUpdateFinal.Elenco = true)
-  //         : (shouldUpdateFinal.Elenco = false);
+        if (this.whiteLabel.app.isWordpress) {
+          this.wordpress.getPosts().then((news) => {
+            this.newsClass.set(news);
+          });
+        } else {
+          this.master
+            .setClassAll(
+              shouldUpdate !== false ? res.news : false,
+              this.newsClass.path,
+              this.newsClass.collection
+            )
+            .then((news) => {
+              this.newsClass.set(news);
+            });
+        }
 
-  //       data.Noticia !== oldData.Noticia
-  //         ? (shouldUpdateFinal.Noticia = true)
-  //         : (shouldUpdateFinal.Noticia = false);
+        this.master
+          .setClassAll(
+            shouldUpdate !== false ? res.ads : false,
+            this.adsClass.path,
+            this.adsClass.collection
+          )
+          .then((ads) => {
+            this.adsClass.set(ads);
+          });
 
-  //       data.Playlist !== oldData.Playlist
-  //         ? (shouldUpdateFinal.Playlist = true)
-  //         : (shouldUpdateFinal.Playlist = false);
-
-  //       data.Propaganda !== oldData.Propaganda
-  //         ? (shouldUpdateFinal.Propaganda = true)
-  //         : (shouldUpdateFinal.Propaganda = false);
-
-  //       data.PlaylistExclusiva !== oldData.PlaylistExclusiva
-  //         ? (shouldUpdateFinal.PlaylistExclusiva = true)
-  //         : (shouldUpdateFinal.PlaylistExclusiva = false);
-  //       resolve(shouldUpdateFinal);
-  //     } else {
-  //       resolve(false);
-  //     }
-  //   });
-  // }
-
-  // set(api = true) {
-  //   this.updateManager.setClass().then((shouldUpdate: UpdateInterface) => {
-  //     this.checkUpdate(shouldUpdate).then((res: UpdateBoolean) => {
-  //       this.bannerclass.setClass(shouldUpdate !== false ? res.Banner : false);
-  //       this.adClass.setClass(shouldUpdate !== false ? res.Propaganda : false);
-  //       this.adconvClass.setClass(
-  //         shouldUpdate !== false ? res.Conveniencia : false
-  //       );
-  //       this.playlistClass.setClass(
-  //         shouldUpdate !== false ? res.Playlist : false
-  //       );
-  //       this.noticiaLengthClass
-  //         .setClass(shouldUpdate !== false ? res.Noticia : false)
-  //         .then(() => {
-  //           this.noticiaClass.setClass(
-  //             shouldUpdate !== false ? res.Noticia : false
-  //           );
-  //         });
-  //       this.elencoClas.setClass(shouldUpdate !== false ? res.Elenco : false);
-  //       this.youtubeApi.setClass();
-  //     });
-  //   });
-  //   if (api) {
-  //     this.apiFootball.setClass();
-  //   }
-  // }
+        this.youtube.setClass();
+      });
+      this.football.setClass().then((res) => {});
+    });
+  }
 }

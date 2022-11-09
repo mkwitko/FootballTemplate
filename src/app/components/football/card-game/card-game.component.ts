@@ -8,13 +8,18 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 })
 export class CardGameComponent implements OnInit {
   @Input() matches = null;
+  @Input() slider = true;
   @ViewChild(IonSlides) slides: IonSlides;
 
   slideOpts = {
-    initialSlide: this.matches ? this.matches.length / 2 + 1 : 0,
+    initialSlide: this.matches ? this.matches.length / 2 + 1 : 5,
   };
 
-  constructor() {}
+  nonSlide = {};
+
+  constructor() {
+    console.log(this.matches);
+  }
 
   ngOnInit() {}
 }

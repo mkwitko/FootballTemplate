@@ -1,0 +1,77 @@
+ion-label {
+    margin: 0;
+    padding: 0;
+}
+
+ion-item {
+    color: #000;
+    margin-top: 0.5vh;
+    --background: transparent;
+}
+
+.container {
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+}
+
+.profile {
+    height: 30%;
+    ion-avatar {
+        height: 20vh;
+        width: 20vh;
+        display: block;
+        margin: auto;
+        margin-top: 4vh;
+        border: var(--ion-color-primary) 2.5px solid;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+}
+
+.margin {
+    margin-left: 2vh;
+    margin-right: 2vh;
+    margin-bottom: 3.5;
+    margin-top: 1.3vh;
+}
+
+.margin-termos {
+    margin-left: 3.5vh;
+    margin-bottom: 2vh;
+    text-align: left;
+    color: #acacff;
+}
+
+p {
+    margin: 0;
+}
+
+.right {
+    float: right;
+}
+
+.titulo {
+    font-family: 'Master-Bold';
+    color: var(--ion-color-primary);
+}
+
+.sombra {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.valor {
+    color: var(--ion-color-primary);
+}
+
+ion-button.socio {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2vh;
+}
+
+.carteira {
+    color: #fff;
+    margin-left: 1.2vh;
+    margin-right: 1.2vh;
+}

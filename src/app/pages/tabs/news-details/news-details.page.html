@@ -1,0 +1,43 @@
+<app-header url="tab2"></app-header>
+
+<ion-content>
+
+    <div *ngIf="build">
+        <img src={{build.image}} alt="">
+        <p class="horario-noticia margin-left">{{build.date | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+
+        <p *ngIf="!wl.app.isWordpress" class="titulo-noticia margin-left margin-right">
+            {{ build.title }}
+        </p>
+        <p *ngIf="wl.app.isWordpress" class="titulo-noticia margin-left margin-right" [innerHtml]="build.title"></p>
+
+        <p *ngIf="!wl.app.isWordpress" class="texto-noticia margin-left margin-right">
+            {{ build.text }}
+        </p>
+        <p *ngIf="wl.app.isWordpress" class="texto-noticia margin-left margin-right" [innerHtml]="build.text"></p>
+
+        <ng-container *ngIf="build.link">
+            <ion-button class="ver-mais margin-left margin-right margin-top" (click)="verMais(build.link)" expand="block" color="dark">
+                <ion-label>Ver no Site</ion-label>
+            </ion-button>
+        </ng-container>
+        <div class="ion-margin-top ion-margin-bottom"></div>
+    </div>
+
+
+    <!-- fab placed to the bottom start -->
+    <ion-fab (click)="change(-1)" vertical="bottom" horizontal="start" slot="fixed">
+        <ion-fab-button color="light">
+            <ion-icon color="primary" name="arrow-back-sharp"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <!-- fab placed to the bottom end -->
+    <ion-fab (click)="change(1)" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="light">
+            <ion-icon color="primary" name="arrow-forward-sharp"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+
+<app-tab></app-tab>

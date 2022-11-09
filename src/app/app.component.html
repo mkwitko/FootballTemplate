@@ -23,7 +23,8 @@
 
                 <ion-list lines="none">
                     <ng-container *ngFor="let a of whiteLabel.app.menu">
-                        <ion-item color="white" class="ion-margin-top" [disabled]="a.disabled" (click)="goTo(a.url)">
+                        <ion-item color="white" class="ion-margin-top" [disabled]="a.disabled === true ? a.disabled : (a.football ? !football.ready : 
+                        (a.youtube ? !youtube.ready : a.disabled))" (click)="goTo(a.url)">
                             <ion-icon color="white" slot="start" name={{a.icone}}></ion-icon>
                             <ion-label color="white">{{a.nome}}</ion-label>
                             <!-- <ng-container *ngIf="a.badge">

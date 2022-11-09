@@ -1,0 +1,229 @@
+.margin-side {
+    margin-right: 1.3vh;
+    margin-left: 1.3vh;
+}
+
+.margin-left {
+    margin-left: 1.3vh;
+}
+
+.margin-up-down {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.margin-top {
+    margin-top: 2vh;
+}
+
+.div-partidas {
+    background: url('../../../../assets/img/painel-placar.png') no-repeat 0% 10%;
+    height: auto;
+    width: auto;
+    border-radius: 1.5vh;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+ion-col {
+    img.logo {
+        text-align: center;
+    }
+}
+
+p {
+    margin: 0;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 9vh;
+    width: auto;
+    margin: auto;
+}
+
+.nome-time {
+    color: #fff;
+    font-weight: 600;
+    font-size: 2vh;
+    text-align: center;
+}
+
+.nome-liga {
+    color: #fff;
+    font-size: 2vh;
+    font-family: "Master-Thin";
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.data {
+    color: #fff;
+    font-size: 2.5vh;
+    margin-top: 1vh;
+    font-family: "Master-Bold";
+    text-align: center;
+}
+
+.nome-estadio {
+    color: #fff;
+    font-size: 2vh;
+    word-wrap: normal;
+}
+
+.compre-ingresso {
+    font-size: 1.5vh;
+}
+
+.ouça-radio {
+    font-size: 1.5vh;
+}
+
+.placar {
+    background-color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 4.5vh;
+    font-family: 'Master-Bold';
+    color: var(--ion-color-primary);
+}
+
+.div-horario {
+    background-color: #fff;
+    height: 5vh;
+    width: 12.5vh;
+    margin: auto;
+    margin-top: 1.5vh;
+    border-radius: 5px;
+    p.horario {
+        font-size: 3.5vh;
+        color: #009035;
+        font-weight: 800;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 4.5vh;
+        font-family: "Master-Bold";
+    }
+}
+
+p {
+    margin: 0;
+}
+
+ion-grid {
+    padding: 1vh;
+    margin: 0;
+    height: 100%;
+    ion-col {
+        padding: 0;
+        margin: 0;
+    }
+    ion-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+}
+
+.titulo {
+    font-family: 'Master-Bold';
+    color: var(--ion-color-primary);
+    font-size: 2.5vh;
+    font-weight: 600;
+    margin: 0.7vh;
+}
+
+.div-partidas {
+    background: url('../../../../assets/img/painel-placar.png') no-repeat 0% 10%;
+    height: auto;
+    width: auto;
+    border-radius: 10px 10px 0px 0px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.painel-placar {
+    margin-top: 2%;
+}
+
+.logo {
+    height: 9vh;
+    width: auto;
+    // margin-top: 1.3vh;
+}
+
+.nome-time {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.8vh;
+    // margin-top: 0.7vh;
+}
+
+.nome-liga {
+    color: #fff;
+    font-size: 1.5vh;
+    font-weight: 200;
+    text-transform: uppercase;
+    // margin-top: 1vh;
+}
+
+.nome-estadio {
+    color: #fff;
+    font-size: 2vh;
+    word-wrap: normal;
+}
+
+.data {
+    color: #fff;
+    font-size: 2.2vh;
+    margin: 1% 0;
+    font-family: "Master-Bold";
+}
+
+.div-horario {
+    background-color: #fff;
+    height: 5vh;
+    width: 12.5vh;
+    margin: auto;
+    // margin-top: 1.5vh;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+    p.horario {
+        font-size: 3.3vh;
+        color: var(--ion-color-primary);
+        font-weight: 800;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 5vh;
+        font-family: "Master-Bold";
+    }
+}
+
+.estadio {
+    color: #fff;
+    font-size: 1.3vh;
+    word-wrap: nowrap;
+}
+
+.placar {
+    background-color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 4.4vh;
+    font-family: 'Master-Bold';
+    color: var(--ion-color-primary);
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
