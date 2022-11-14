@@ -1,6 +1,7 @@
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { Component, Input } from '@angular/core';
 import { Banner } from 'src/app/interfaces/banner/banner';
+import { WhiteLabelService } from 'src/app/services/white-label/white-label.service';
 
 @Component({
   selector: 'app-ad',
@@ -9,6 +10,7 @@ import { Banner } from 'src/app/interfaces/banner/banner';
 })
 export class AdComponent {
   @Input() ads: Array<Banner>;
+  @Input() path = false;
   @Input() fixed = true;
 
   fixedOpts = {
@@ -20,7 +22,10 @@ export class AdComponent {
     speed: 1200,
   };
 
-  constructor(private navigation: NavigationService) {}
+  constructor(
+    public wl: WhiteLabelService,
+    private navigation: NavigationService
+  ) {}
 
   goTo(url: string) {
     this.navigation.goTo(url);

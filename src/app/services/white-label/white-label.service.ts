@@ -22,6 +22,9 @@ export class WhiteLabelService {
     services: [],
     licenca: '',
     politica: '',
+    kto: '',
+    notifyKey: '',
+    appId: '',
   };
 
   constructor() {}

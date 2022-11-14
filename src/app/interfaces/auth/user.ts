@@ -9,6 +9,8 @@ export interface User {
   telefone?: string;
   userCreatedAt?: number;
   status?: string;
-  ultimoContrato?: any;
+  contrato?: any;
+  socio?: boolean;
+  identificado?: boolean;
   token?: string;
 }

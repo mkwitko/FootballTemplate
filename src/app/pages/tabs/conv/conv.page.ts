@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ads } from 'src/app/classes/ads/ads';
-import { WhiteLabelService } from 'src/app/services/white-label/white-label.service';
+import { StoreClass } from 'src/app/classes/store/store';
 
 @Component({
   selector: 'app-conv',
@@ -8,7 +7,9 @@ import { WhiteLabelService } from 'src/app/services/white-label/white-label.serv
   styleUrls: ['./conv.page.scss'],
 })
 export class ConvPage implements OnInit {
-  constructor(public adsClass: Ads, public wl: WhiteLabelService) {}
+  public default = {};
+
+  constructor(public storeClass: StoreClass) {}
 
   ngOnInit() {}
 }

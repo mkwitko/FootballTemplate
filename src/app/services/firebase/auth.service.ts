@@ -132,17 +132,23 @@ export class AuthService {
     );
   }
 
-  async delete() {
+  async delete(): Promise<any> {
     await this.screen.presentLoading();
-    return from(
-      this.auth.currentUser
-        .delete()
-        .catch((err) => {
-          this.screen.presentToast(this.translante.verifyErrors(err.code));
-        })
-        .finally(() => {
-          this.screen.dismissloading();
-        })
-    );
+    return new Promise((resolve, reject) => {
+      return from(
+        this.auth.currentUser
+          .delete()
+          .then(() => {
+            resolve(true);
+          })
+          .catch((err) => {
+            this.screen.presentToast(this.translante.verifyErrors(err.code));
+            reject(err);
+          })
+          .finally(() => {
+            this.screen.dismissloading();
+          })
+      );
+    });
   }
 }

@@ -1,12 +1,16 @@
 <app-header></app-header>
 
 <ion-content>
-    <app-ad [fixed]="true" [ads]="adsClass.get()"></app-ad>
+    <app-ad [fixed]="true" [path]="true"></app-ad>
     <ion-grid>
         <ion-row>
-            <ion-col *ngFor="let item of wl.app.services">
-                <app-club-card [item]="item"></app-club-card>
-            </ion-col>
+            <ng-container *ngFor="let item of storeClass.get()">
+                <ng-container *ngIf="!item.isClub && item.onOff">
+                    <ion-col size="4">
+                        <app-club-card [item]="item"></app-club-card>
+                    </ion-col>
+                </ng-container>
+            </ng-container>
         </ion-row>
     </ion-grid>
 </ion-content>

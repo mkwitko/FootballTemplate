@@ -71,6 +71,8 @@ export class CrudService {
       userEmail: yourAsset.userEmail ? yourAsset.userEmail : '',
       userName: yourAsset.userName ? yourAsset.userName : '',
       userCreatedAt: yourAsset.userCreatedAt ? yourAsset.userCreatedAt : '',
+      socio: false,
+      identificado: false,
     });
   }
 

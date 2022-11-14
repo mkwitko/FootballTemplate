@@ -1,3 +1,4 @@
+import { NotificationService } from './services/notification/notification.service';
 import { Capacitor } from '@capacitor/core';
 import { AngularFireRemoteConfig } from '@angular/fire/compat/remote-config';
 import { ScreenOrientationService } from './services/screen-orientation/screen-orientation.service';
@@ -15,6 +16,7 @@ import { WordpressService } from './services/apis/wordpress/wordpress.service';
 import { ScreenService } from './services/screen/screen.service';
 import { FootballService } from './services/apis/football/football.service';
 import { YoutubeService } from './services/apis/youtube/youtube.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -35,18 +37,24 @@ export class AppComponent {
     private screenOrientation: ScreenOrientationService,
     private master: MasterService,
     private remoteConfig: RemoteConfigService,
-    private themer: ColorService
+    private themer: ColorService,
+    private nofity: NotificationService,
+    private platform: Platform
   ) {
-    if (Capacitor.isNativePlatform()) {
-      this.screenOrientation.lockPortrait();
+    if (this.platform.is('capacitor')) {
+      this.platform.ready().then(() => {
+        this.screenOrientation.lockPortrait();
+      });
     }
     this.remoteConfig.init().then(() => {
       this.remoteConfig.done = true;
+      this.nofity.init();
       this.themer.setTheme(this.whiteLabel.app.color);
       this.auth.getAuth().onAuthStateChanged((user) => {
         if (user) {
           this.master.setUser(user.uid);
           this.master.set();
+          this.userClass.setAnon(user.isAnonymous);
         }
       });
     });

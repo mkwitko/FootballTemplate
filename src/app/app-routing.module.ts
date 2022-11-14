@@ -62,59 +62,97 @@ const routes: Routes = [
   },
   {
     path: 'tabela',
-    loadChildren: () => import('./pages/menu/tabela/tabela.module').then( m => m.TabelaPageModule)
+    loadChildren: () =>
+      import('./pages/menu/tabela/tabela.module').then(
+        (m) => m.TabelaPageModule
+      ),
   },
   {
     path: 'calendario',
-    loadChildren: () => import('./pages/menu/calendario/calendario.module').then( m => m.CalendarioPageModule)
+    loadChildren: () =>
+      import('./pages/menu/calendario/calendario.module').then(
+        (m) => m.CalendarioPageModule
+      ),
   },
   {
     path: 'media',
-    loadChildren: () => import('./pages/menu/media/media.module').then( m => m.MediaPageModule)
+    loadChildren: () =>
+      import('./pages/menu/media/media.module').then((m) => m.MediaPageModule),
   },
   {
     path: 'clube',
-    loadChildren: () => import('./pages/menu/clube/clube.module').then( m => m.ClubePageModule)
+    loadChildren: () =>
+      import('./pages/menu/clube/clube.module').then((m) => m.ClubePageModule),
   },
   {
     path: 'media-details',
-    loadChildren: () => import('./pages/menu/media-details/media-details.module').then( m => m.MediaDetailsPageModule)
+    loadChildren: () =>
+      import('./pages/menu/media-details/media-details.module').then(
+        (m) => m.MediaDetailsPageModule
+      ),
   },
   {
     path: 'news-details',
-    loadChildren: () => import('./pages/tabs/news-details/news-details.module').then( m => m.NewsDetailsPageModule)
+    loadChildren: () =>
+      import('./pages/tabs/news-details/news-details.module').then(
+        (m) => m.NewsDetailsPageModule
+      ),
   },
   {
     path: 'history',
-    loadChildren: () => import('./pages/club/history/history.module').then( m => m.HistoryPageModule)
+    loadChildren: () =>
+      import('./pages/club/history/history.module').then(
+        (m) => m.HistoryPageModule
+      ),
   },
   {
     path: 'wallpaper',
-    loadChildren: () => import('./pages/club/wallpaper/wallpaper.module').then( m => m.WallpaperPageModule)
+    loadChildren: () =>
+      import('./pages/club/wallpaper/wallpaper.module').then(
+        (m) => m.WallpaperPageModule
+      ),
   },
   {
     path: 'playlist',
-    loadChildren: () => import('./pages/club/playlist/playlist.module').then( m => m.PlaylistPageModule)
+    loadChildren: () =>
+      import('./pages/club/playlist/playlist.module').then(
+        (m) => m.PlaylistPageModule
+      ),
   },
   {
     path: 'memorial',
-    loadChildren: () => import('./pages/club/memorial/memorial.module').then( m => m.MemorialPageModule)
+    loadChildren: () =>
+      import('./pages/club/memorial/memorial.module').then(
+        (m) => m.MemorialPageModule
+      ),
   },
   {
     path: 'carteira-socio',
-    loadChildren: () => import('./pages/modal/carteira-socio/carteira-socio.module').then( m => m.CarteiraSocioPageModule)
+    loadChildren: () =>
+      import('./pages/modal/carteira-socio/carteira-socio.module').then(
+        (m) => m.CarteiraSocioPageModule
+      ),
   },
   {
     path: 'galeria-modal',
-    loadChildren: () => import('./pages/modal/galeria-modal/galeria-modal.module').then( m => m.GaleriaModalPageModule)
+    loadChildren: () =>
+      import('./pages/modal/galeria-modal/galeria-modal.module').then(
+        (m) => m.GaleriaModalPageModule
+      ),
   },
   {
     path: 'licenca',
-    loadChildren: () => import('./pages/termos/licenca/licenca.module').then( m => m.LicencaPageModule)
+    loadChildren: () =>
+      import('./pages/termos/licenca/licenca.module').then(
+        (m) => m.LicencaPageModule
+      ),
   },
   {
     path: 'politica',
-    loadChildren: () => import('./pages/termos/politica/politica.module').then( m => m.PoliticaPageModule)
+    loadChildren: () =>
+      import('./pages/termos/politica/politica.module').then(
+        (m) => m.PoliticaPageModule
+      ),
   },
 ];
 

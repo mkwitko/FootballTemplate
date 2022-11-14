@@ -1,6 +1,6 @@
 // TODO alterar 'app' e 'firebase'
 export const global = {
-  version: '0.0.1',
+  version: '0.0.2',
   erroGenerico: 'Ocorreu um erro inesperado',
   app: {
     logo: './../assets/whiteLabel/logo.png',
@@ -19,6 +19,9 @@ export const global = {
     messagingSenderId: '605097301870',
     measurementId: 'G-5B54SN0DHR',
   },
+  notify: {
+    base: 'https://ntfy.sh/',
+  },
   paths: {
     users: {
       myUser: 'myUser',
@@ -27,6 +30,7 @@ export const global = {
     banner: 'banner',
     ads: 'ads',
     news: 'news',
+    club: 'club',
     noticialength: 'noticia-length',
     update: 'update',
     remoteConfig: 'remoteConfig',

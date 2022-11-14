@@ -1,8 +1,10 @@
 <div class="slide-banner">
-    <ng-container *ngIf="ads.length === 0">
-        <app-skeleton-banner></app-skeleton-banner>
+    <ng-container *ngIf="!path">
+        <ng-container *ngIf="ads.length === 0">
+            <app-skeleton-banner></app-skeleton-banner>
+        </ng-container>
     </ng-container>
-    <ion-slides *ngIf="ads.length > 0" [options]="fixed ? fixedOpts : moveableOpts">
+    <ion-slides *ngIf="ads && ads.length > 0 && !path" [options]="fixed ? fixedOpts : moveableOpts">
         <ng-container>
             <ng-container *ngFor="let x of ads">
                 <ng-container *ngIf="x.onOff">
@@ -11,6 +13,13 @@
                     </ion-slide>
                 </ng-container>
             </ng-container>
+        </ng-container>
+    </ion-slides>
+    <ion-slides *ngIf="!ads && path">
+        <ng-container>
+            <ion-slide (click)="away(wl.app.kto)">
+                <img src='../../../../assets/whiteLabel/kto.jpeg' alt="KTO">
+            </ion-slide>
         </ng-container>
     </ion-slides>
 </div>

@@ -10,12 +10,7 @@ import { NavigationService } from 'src/app/services/navigation/navigation.servic
   styleUrls: ['./loading.page.scss'],
 })
 export class LoadingPage implements OnInit {
-  constructor(
-    private screen: ScreenService,
-    private remoteConfig: RemoteConfigService,
-    private navigation: NavigationService,
-    private wl: WhiteLabelService
-  ) {
+  constructor(private screen: ScreenService) {
     this.init();
   }
 

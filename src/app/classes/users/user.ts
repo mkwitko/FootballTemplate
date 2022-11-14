@@ -59,7 +59,7 @@ export class UserClass {
         userName: environment.global.app.anon.name,
       };
     }
-    this.anon = true;
+    this.anon = bool;
   }
 
   setSocioInfo(socioInfo) {

@@ -39,6 +39,7 @@ export class RemoteConfigService {
                       this.cache
                         .setterCache(all, environment.global.paths.remoteConfig)
                         .then(() => {
+                          this.screen.dismissloading();
                           resolve(all);
                         });
                     });

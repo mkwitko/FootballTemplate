@@ -1,3 +1,4 @@
+import { redirectCard } from './../../../interfaces/redirectCard/redirect-card';
 import { NavigationService } from './../../../services/navigation/navigation.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -7,14 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./club-card.component.scss'],
 })
 export class ClubCardComponent {
-  @Input() item;
+  @Input() item: redirectCard;
   constructor(private nav: NavigationService) {}
 
-  goTo(item) {
-    if (item.out) {
-      this.nav.away(item.path);
+  goTo(item: redirectCard) {
+    if (item.link) {
+      this.nav.away(item.link);
     } else {
-      this.nav.goTo(item.path);
+      this.nav.goTo(item.router);
     }
   }
 }

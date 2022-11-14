@@ -7,6 +7,7 @@ import { Ads } from 'src/app/classes/ads/ads';
 import { Banners } from 'src/app/classes/banners/banners';
 import { UpdateManagerClass } from 'src/app/classes/updateManager/update-manager';
 import { NoticiaLengthClass } from 'src/app/classes/news/noticialength';
+import { StoreClass } from 'src/app/classes/store/store';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { NoticiaLengthClass } from 'src/app/classes/news/noticialength';
     Banners,
     UpdateManagerClass,
     MasterHelperService,
+    StoreClass,
   ],
 })
 export class SharedModule {}

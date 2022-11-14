@@ -4,6 +4,7 @@ import { IonSlides } from '@ionic/angular';
 import { User } from 'src/app/interfaces/auth/user';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
+import { UserClass } from 'src/app/classes/users/user';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private navigation: NavigationService,
-    private auth: AuthService
+    private auth: AuthService,
+    private user: UserClass
   ) {}
 
   ngOnInit() {}

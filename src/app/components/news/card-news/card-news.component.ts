@@ -38,11 +38,11 @@ export class CardNewsComponent implements OnInit {
       };
     } else {
       this.build = {
-        id: this.info.data,
-        image: this.info.data.downUrl,
-        title: this.info.data.titulo,
-        date: this.info.data.createdAt,
-        text: this.info.data.texto,
+        id: this.info.id,
+        image: this.info.downUrl,
+        title: this.info.titulo,
+        date: this.info.createdAt,
+        text: this.info.texto,
       };
     }
   }

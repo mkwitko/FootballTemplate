@@ -56,12 +56,12 @@ export class NewsDetailsPage {
       };
     } else {
       this.build = {
-        id: this.data.data,
-        image: this.data.data.downUrl,
-        title: this.data.data.titulo,
-        date: this.data.data.createdAt,
-        text: this.data.data.texto,
-        link: this.data.data.link,
+        id: this.data.id,
+        image: this.data.downUrl,
+        title: this.data.titulo,
+        date: this.data.createdAt,
+        text: this.data.texto,
+        link: this.data.link,
       };
     }
   }

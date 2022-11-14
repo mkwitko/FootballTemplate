@@ -3,4 +3,5 @@ export interface UpdateInterface {
   banner?: Number;
   ads?: Number;
   news?: Number;
+  redirectCard?: Number;
 }

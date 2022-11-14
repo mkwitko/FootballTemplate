@@ -6,19 +6,19 @@
     </ion-refresher>
     <app-card-game [matches]="football.gamesNow"></app-card-game>
     <app-ad [fixed]="false" [ads]="bannerClass.get()"></app-ad>
-    <app-ad [fixed]="true" [ads]="adsClass.get()"></app-ad>
+    <app-ad [fixed]="true" [path]="true"></app-ad>
 
     <ion-grid fixed>
         <ng-container *ngIf="newsClass.get() && newsClass.get().length > 0">
             <ion-row>
                 <ion-col size="6">
                     <p class="ion-text-center">
-                        <app-card-news [info]="newsClass.get()[0]"></app-card-news>
+                        <app-card-news *ngIf="newsClass.get()[0]" [info]="newsClass.get()[0]"></app-card-news>
                     </p>
                 </ion-col>
                 <ion-col size="6">
                     <p class="ion-text-center">
-                        <app-card-news [info]="newsClass.get()[1]"></app-card-news>
+                        <app-card-news *ngIf="newsClass.get()[1]" [info]="newsClass.get()[1]"></app-card-news>
                     </p>
                 </ion-col>
             </ion-row>

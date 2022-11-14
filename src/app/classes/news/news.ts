@@ -52,9 +52,7 @@ export class News {
     } else {
       let result = [];
       for (const a of this.value) {
-        for (const b of a.data) {
-          result.push(b);
-        }
+        result.push(a);
       }
       return result;
     }
@@ -109,6 +107,7 @@ export class News {
   }
 
   finder(object) {
+    console.log(object);
     let finder = [];
     for (const a of object) {
       finder[a.page] = a.data;

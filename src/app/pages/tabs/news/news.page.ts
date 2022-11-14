@@ -76,8 +76,4 @@ export class NewsPage {
   goTo(info) {
     this.navigation.rotaId('news-details', info.id);
   }
-
-  compartilhar(url) {
-    this.share.share(url);
-  }
 }

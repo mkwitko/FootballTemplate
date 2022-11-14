@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 //Firebase
-import { AngularFireStorage } from '@angular/fire/compat/storage/storage';
 import {
   getAuth,
   indexedDBLocalPersistence,
@@ -25,7 +24,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {
   AngularFireRemoteConfigModule,
-  DEFAULTS,
   SETTINGS,
 } from '@angular/fire/compat/remote-config';
 
@@ -62,6 +60,9 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { providePerformance, getPerformance } from '@angular/fire/performance';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+
+//One Signal
+import { OneSignal } from '@awesome-cordova-plugins/onesignal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -126,6 +127,9 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     SocialSharing,
     ScreenTrackingService,
     UserTrackingService,
+
+    //One Signal
+    OneSignal,
   ],
   bootstrap: [AppComponent],
 })

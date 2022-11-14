@@ -1,3 +1,4 @@
+import { StoreClass } from './../../classes/store/store';
 import { MasterHelperService } from 'src/app/helpers/masterHelper/master-helper.service';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { UpdateBoolean } from './../../interfaces/update/update-bool';
@@ -30,7 +31,8 @@ export class MasterService {
     private whiteLabel: WhiteLabelService,
     private wordpress: WordpressService,
     private football: FootballService,
-    private youtube: YoutubeService
+    private youtube: YoutubeService,
+    private storeClass: StoreClass
   ) {}
 
   setUser(id: string) {
@@ -83,47 +85,61 @@ export class MasterService {
   }
 
   set(api = true) {
+    this.setter();
+    this.youtube.setClass();
+    this.football.setClass();
+
     this.updateManager.setClass().then((shouldUpdate) => {
-      this.checkUpdate(shouldUpdate).then((res: UpdateBoolean) => {
-        this.master
-          .setClassAll(
-            shouldUpdate !== false ? res.banner : false,
-            this.bannerClass.path,
-            this.bannerClass.collection
-          )
-          .then((banners) => {
-            this.bannerClass.set(banners);
-          });
-
-        if (this.whiteLabel.app.isWordpress) {
-          this.wordpress.getPosts().then((news) => {
-            this.newsClass.set(news);
-          });
-        } else {
-          this.master
-            .setClassAll(
-              shouldUpdate !== false ? res.news : false,
-              this.newsClass.path,
-              this.newsClass.collection
-            )
-            .then((news) => {
-              this.newsClass.set(news);
-            });
-        }
-
-        this.master
-          .setClassAll(
-            shouldUpdate !== false ? res.ads : false,
-            this.adsClass.path,
-            this.adsClass.collection
-          )
-          .then((ads) => {
-            this.adsClass.set(ads);
-          });
-
-        this.youtube.setClass();
-      });
-      this.football.setClass().then((res) => {});
+      if (shouldUpdate) {
+        this.checkUpdate(shouldUpdate).then((res: UpdateBoolean) => {
+          this.setter(shouldUpdate, res);
+        });
+      }
     });
+  }
+
+  private setter(shouldUpdate = false, res?) {
+    this.master
+      .setClassAll(
+        shouldUpdate !== false ? res.banner : false,
+        this.bannerClass.path,
+        this.bannerClass.collection
+      )
+      .then((banners) => {
+        this.bannerClass.set(banners);
+      });
+    if (this.whiteLabel.app.isWordpress) {
+      this.wordpress.getPosts().then((news) => {
+        this.newsClass.set(news);
+      });
+    } else {
+      this.master
+        .setClassAll(
+          shouldUpdate !== false ? res.news : false,
+          this.newsClass.path,
+          this.newsClass.collection
+        )
+        .then((news) => {
+          this.newsClass.set(news);
+        });
+    }
+    this.master
+      .setClassAll(
+        shouldUpdate !== false ? res.ads : false,
+        this.adsClass.path,
+        this.adsClass.collection
+      )
+      .then((ads) => {
+        this.adsClass.set(ads);
+      });
+    this.master
+      .setClassAll(
+        shouldUpdate !== false ? res.redirectCard : false,
+        this.storeClass.path,
+        this.storeClass.collection
+      )
+      .then((store) => {
+        this.storeClass.set(store);
+      });
   }
 }

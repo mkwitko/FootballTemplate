@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UserClass } from 'src/app/classes/users/user';
+import { CrudHelperService } from 'src/app/helpers/crudHelper/crud-helper.service';
 import { CarteiraSocioPage } from 'src/app/pages/modal/carteira-socio/carteira-socio.page';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { ScreenService } from 'src/app/services/screen/screen.service';
 import { WhiteLabelService } from 'src/app/services/white-label/white-label.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile-home',
@@ -17,6 +17,7 @@ export class ProfileHomePage implements OnInit {
   constructor(
     public userClass: UserClass,
     private auth: AuthService,
+    private crud: CrudHelperService,
     private navigation: NavigationService,
     private alertController: AlertController,
     private screen: ScreenService,
@@ -38,7 +39,14 @@ export class ProfileHomePage implements OnInit {
   }
 
   async deleteAccount() {
-    await this.auth.delete();
+    await this.auth.delete().then(() => {
+      this.crud.delete(
+        this.userClass.collection,
+        this.userClass.get().userId,
+        this.userClass.get().avatar ? true : false,
+        this.userClass.get().avatar
+      );
+    });
   }
 
   async presentAlertConfirm() {
