@@ -1,0 +1,56 @@
+ion-grid,
+ion-row,
+ion-col,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    color: var(--ion-color-primary);
+}
+
+ion-grid {
+    padding: 3vh;
+    ion-row.first {
+        p {
+            font-size: 1.5vh;
+            font-weight: 300;
+        }
+    }
+    ion-row.second {
+        ion-col.teams {
+            div {
+                p {
+                    img {
+                        height: 7vh;
+                        width: auto;
+                    }
+                }
+                p.team {
+                    font-size: 2vh;
+                    font-family: "Master-Bold";
+                }
+            }
+        }
+        ion-col.info {
+            div.placar {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                p {
+                    background-color: #fff;
+                    text-align: center;
+                    border-radius: 10px;
+                    font-size: 3vh;
+                    font-family: "Master-Bold";
+                    box-shadow: rgb(0 0 0 / 45%) 0px 5px 15px;
+                    margin: 1.5vh;
+                    padding: 1.5vh;
+                    width: 25%;
+                }
+            }
+        }
+    }
+}

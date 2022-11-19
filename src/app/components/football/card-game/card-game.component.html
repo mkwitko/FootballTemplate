@@ -6,7 +6,7 @@
     <div *ngIf="!slider || matches.length > 0" class="div-partidas">
         <ion-slides *ngIf="slider" [options]="slideOpts">
             <ng-container *ngFor="let a of matches; let i = index">
-                <ion-slide *ngIf="a">
+                <ion-slide (click)="stat(a)" *ngIf="a">
                     <ng-container *ngIf="a.match_status !== 'Finished'">
                         <ion-grid>
                             <ion-row class="painel-placar">
@@ -67,7 +67,7 @@
             </ng-container>
         </ion-slides>
         <ion-slides *ngIf="!slider" [options]="nonSlide">
-            <ion-slide *ngIf="matches">
+            <ion-slide (click)="stat(matches)" *ngIf="matches">
                 <ng-container *ngIf="matches.match_status !== 'Finished'">
                     <ion-grid>
                         <div class="div-partidas margin-side margin-up-down">

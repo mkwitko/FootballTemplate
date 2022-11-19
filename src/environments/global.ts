@@ -1,3 +1,5 @@
+import { fire } from './firebase';
+
 // TODO alterar 'app' e 'firebase'
 export const global = {
   version: '0.0.2',
@@ -9,16 +11,7 @@ export const global = {
       email: 'anon@anon.com',
     },
   },
-  firebase: {
-    projectId: 'clube-template',
-    appId: '1:605097301870:web:866835f13a209b436a937f',
-    storageBucket: 'clube-template.appspot.com',
-    locationId: 'europe-west',
-    apiKey: 'AIzaSyCUp2EoiIKWvNJ7ZnNHng3x16ItjmuupcQ',
-    authDomain: 'clube-template.firebaseapp.com',
-    messagingSenderId: '605097301870',
-    measurementId: 'G-5B54SN0DHR',
-  },
+  firebase: fire.firebase,
   notify: {
     base: 'https://ntfy.sh/',
   },
@@ -39,6 +32,7 @@ export const global = {
       games: 'gamesApi',
       league: 'leagueApi',
       regional: 'regionalApi',
+      stats: 'statsApi',
     },
   },
   apiFootball: {

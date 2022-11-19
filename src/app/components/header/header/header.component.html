@@ -15,7 +15,7 @@
             <ion-button *ngIf="modal" (click)="close()">
                 <ion-icon slot="icon-only" name="close-sharp"></ion-icon>
             </ion-button>
-            <ion-button class="not-button" *ngIf="!modal" (click)="notification()">
+            <!-- <ion-button class="not-button" *ngIf="!modal" (click)="notification()">
                 <ng-container>
                     <ion-badge color="warning" mode="md">
                         <ion-label>0</ion-label>
@@ -23,7 +23,7 @@
                 </ng-container>
                 <ion-icon slot="icon-only" name="notifications-sharp">
                 </ion-icon>
-            </ion-button>
+            </ion-button> -->
         </ion-buttons>
 
         <ion-title *ngIf="title">

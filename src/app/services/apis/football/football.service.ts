@@ -15,6 +15,8 @@ export class FootballService {
   public gamesNow;
   private activeTable;
   private infoObj;
+  private gamesFinder = [];
+  private statsFinder = [];
 
   public ready = false;
 
@@ -22,6 +24,7 @@ export class FootballService {
     games: environment.global.paths.footballApi.games,
     league: environment.global.paths.footballApi.league,
     regional: environment.global.paths.footballApi.regional,
+    stats: environment.global.paths.footballApi.stats,
   };
 
   constructor(
@@ -92,13 +95,35 @@ export class FootballService {
     );
   }
 
+  public statisticUrl(home, away) {
+    return (
+      'https://apiv3.apifootball.com/?action=get_H2H&firstTeamId=' +
+      home +
+      '&secondTeamId= ' +
+      away +
+      '&APIkey=' +
+      this.wl.app.footballApi.api
+    );
+  }
+
   private setGames(value) {
     this.games = value;
+    this.fillGames();
     for (const a of this.games) {
       a.match_stadium = this.setNomeEstadio(a.match_stadium);
       a.league_name = this.setNomeCompeticao(a.league_name);
     }
     this.gamesNow = this.now(value);
+  }
+
+  public findGame(id) {
+    return this.gamesFinder[id];
+  }
+
+  private fillGames() {
+    this.games.forEach((element) => {
+      this.gamesFinder[element.match_id] = element;
+    });
   }
 
   setClass(): Promise<any> {
@@ -118,6 +143,9 @@ export class FootballService {
       this.get(this.gamesUrl())
         .then((games) => {
           this.setGames(games);
+          this.setClassStats(games).then((res) => {
+            this.fillStat(res);
+          });
           this.cache.setterCache(games, this.path.games);
           this.get(this.tableUrl(this.wl.app.footballApi.league))
             .then((table) => {
@@ -204,5 +232,56 @@ export class FootballService {
           each.team_id.toString() === this.wl.app.footballApi.club.toString()
       )[0];
     }
+  }
+
+  public findStats(id1, id2) {
+    return this.statsFinder[id1 + '/' + id2];
+  }
+
+  private fillStat(value) {
+    value.forEach((element) => {
+      this.statsFinder[element.id] = element.data;
+    });
+  }
+
+  private stats(game): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let id1 = game.match_hometeam_id;
+      let id2 = game.match_awayteam_id;
+      let returner = {};
+      this.get(this.statisticUrl(id1, id2)).then((res) => {
+        returner = {
+          id: id1 + '/' + id2,
+          data: res,
+        };
+        resolve(returner);
+      });
+    });
+  }
+
+  setClassStats(games, update = false): Promise<any> {
+    return new Promise((resolve) => {
+      this.cache.getterCache(this.path.stats).then((cache) => {
+        if (!cache || cache.length < games.length || update) {
+          let count = 0;
+          let cache = [];
+          games.forEach((element) => {
+            this.stats(element).then((res) => {
+              count++;
+              cache.push(res);
+              if (count === games.length) {
+                this.cache.setterCache(cache, this.path.stats).then(() => {
+                  resolve(cache);
+                });
+              } else {
+                this.cache.setterCache(cache, this.path.stats);
+              }
+            });
+          });
+        } else {
+          resolve(cache);
+        }
+      });
+    });
   }
 }

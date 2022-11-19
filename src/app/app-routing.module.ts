@@ -154,6 +154,10 @@ const routes: Routes = [
         (m) => m.PoliticaPageModule
       ),
   },
+  {
+    path: 'match-details',
+    loadChildren: () => import('./pages/match/match-details/match-details.module').then( m => m.MatchDetailsPageModule)
+  },
 ];
 
 @NgModule({

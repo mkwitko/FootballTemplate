@@ -1,0 +1,58 @@
+<app-header url="home"></app-header>
+
+<ion-content>
+    <ion-grid fixed>
+        <ion-row class="first">
+            <ion-col size="12">
+                <p class="ion-text-center">
+                    {{game.league_name}}
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="second">
+            <ion-col class="teams" size="3">
+                <div>
+                    <p class="ion-text-center">
+                        <img [src]="game.team_home_badge" alt="">
+                    </p>
+                </div>
+                <div>
+                    <p class="ion-text-center team">
+                        {{game.match_hometeam_name}}
+                    </p>
+                </div>
+            </ion-col>
+            <ion-col class="info" size="6">
+                <div>
+                    <p class="ion-text-center date">
+                        {{game.match_date}}
+                    </p>
+                </div>
+                <div class="placar">
+                    <p class="ion-text-center">
+                        {{game.match_hometeam_score}}
+                    </p>
+                    <p class="ion-text-center">
+                        {{game.match_awayteam_score}}
+                    </p>
+                </div>
+            </ion-col>
+            <ion-col class="teams" size="3">
+                <div>
+                    <p class="ion-text-center">
+                        <img [src]="game.team_away_badge" alt="">
+                    </p>
+                </div>
+                <div>
+                    <p class="ion-text-center team">
+                        {{game.match_awayteam_name}}
+                    </p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>
+
+<app-tab></app-tab>
