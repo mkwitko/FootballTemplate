@@ -10,20 +10,15 @@ export class WhiteLabelService {
   public app = {
     appName: '',
     menu: [],
-    firebase: {},
     color: {},
     tabs: [],
     isWordpress: false,
-    objects: {},
     site: '',
     footballApi: {} as ApiFootball,
     youtube: {} as Youtube,
-    clubPage: [],
-    services: [],
     licenca: '',
     politica: '',
     kto: '',
-    notifyKey: '',
     appId: '',
   };
 
