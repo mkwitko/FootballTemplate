@@ -1,72 +1,106 @@
 <app-header></app-header>
 
 <ion-content *ngIf="userClass.get()">
-    <ng-container *ngIf="!userClass.anon">
-        <ion-button (click)="goTo('profile-edit')" class="margin right">
-            <ion-icon name="pencil-outline"></ion-icon>
-        </ion-button>
-    </ng-container>
+  <ng-container *ngIf="!userClass.anon">
+    <ion-button (click)="goTo('profile-edit')" class="margin right">
+      <ion-icon name="pencil-outline"></ion-icon>
+    </ion-button>
+  </ng-container>
 
-    <div class="profile">
-        <ion-avatar>
-            <ng-container *ngIf="userClass.get().avatar">
-                <img src={{userClass.get().avatar}} alt="">
-            </ng-container>
-            <ng-container *ngIf="!userClass.get().avatar">
-                <img src="../../../../assets/img/default-user.png" alt="">
-            </ng-container>
-        </ion-avatar>
-    </div>
+  <div class="profile">
+    <ion-avatar>
+      <ng-container *ngIf="userClass.get().avatar">
+        <img src="{{userClass.get().avatar}}" alt="" />
+      </ng-container>
+      <ng-container *ngIf="!userClass.get().avatar">
+        <img src="../../../../assets/img/default-user.png" alt="" />
+      </ng-container>
+    </ion-avatar>
+  </div>
 
-    <div class="margin">
-        <ion-item mode="ios" fill="outline" lines="none">
-            <ion-label class="titulo ion-text-start">Nome</ion-label>
-            <ion-label *ngIf="userClass.get().userName" class="valor ion-text-end">{{userClass.get().userName}}</ion-label>
-        </ion-item>
-        <ion-item mode="ios" fill="outline" lines="none">
-            <ion-label slot="start" class="titulo ion-text-start">E-mail</ion-label>
-            <ion-label class="valor ion-text-end">{{userClass.get().userEmail}}</ion-label>
-        </ion-item>
-        <ion-item mode="ios" fill="outline" lines="none">
-            <ion-label slot="start" class="titulo ion-text-start">Celular</ion-label>
-            <ion-label *ngIf="userClass.get().telefone" slot="end" class="valor">{{userClass.get().telefone}}</ion-label>
-        </ion-item>
-        <ion-item mode="ios" fill="outline" lines="none">
-            <ion-label slot="start" class="titulo ion-text-start">CPF</ion-label>
-            <ion-label *ngIf="userClass.get().cpf" slot="end" class="valor">{{userClass.get().cpf}}</ion-label>
-        </ion-item>
-        <ion-item mode="ios" fill="outline" lines="none">
-            <ion-label slot="start" class="titulo ion-text-start">Sócio desde</ion-label>
-            <!-- <ion-label *ngIf="userClass.userInfo.socioDesde" slot="end" class="valor">{{userClass.userInfo.socioDesde}}</ion-label> -->
-        </ion-item>
+  <div class="margin">
+    <ion-item mode="ios" fill="outline" lines="none">
+      <ion-label class="titulo ion-text-start">Nome</ion-label>
+      <ion-label *ngIf="userClass.get().userName" class="valor ion-text-end"
+        >{{userClass.get().userName}}</ion-label
+      >
+    </ion-item>
+    <ion-item mode="ios" fill="outline" lines="none">
+      <ion-label slot="start" class="titulo ion-text-start">E-mail</ion-label>
+      <ion-label class="valor ion-text-end"
+        >{{userClass.get().userEmail}}</ion-label
+      >
+    </ion-item>
+    <ion-item mode="ios" fill="outline" lines="none">
+      <ion-label slot="start" class="titulo ion-text-start">Celular</ion-label>
+      <ion-label *ngIf="userClass.get().telefone" slot="end" class="valor"
+        >{{userClass.get().telefone}}</ion-label
+      >
+    </ion-item>
+    <ion-item mode="ios" fill="outline" lines="none">
+      <ion-label slot="start" class="titulo ion-text-start">CPF</ion-label>
+      <ion-label *ngIf="userClass.get().cpf" slot="end" class="valor"
+        >{{userClass.get().cpf}}</ion-label
+      >
+    </ion-item>
+    <ion-item mode="ios" fill="outline" lines="none">
+      <ion-label slot="start" class="titulo ion-text-start"
+        >Sócio desde</ion-label
+      >
+      <!-- <ion-label *ngIf="userClass.userInfo.socioDesde" slot="end" class="valor">{{userClass.userInfo.socioDesde}}</ion-label> -->
+    </ion-item>
+    <ng-container>
+      <ng-container *ngIf="!userClass.anon">
         <ng-container>
-            <ng-container *ngIf="!userClass.anon">
-                <ng-container>
-                    <ion-button (click)="checkSocio()" class="ion-margin-top container" expand="block">
-                        Área do Sócio
-                    </ion-button>
-                </ng-container>
-            </ng-container>
-            <ng-container>
-                <ion-button *ngIf="userClass.anon" (click)="logout()" color="primary" class="ion-margin-top container" expand="block">
-                    <ion-label color="light">VOLTAR PARA AUTENTICAÇÃO</ion-label>
-                </ion-button>
-            </ng-container>
-            <ion-button (click)="goTo('licenca')" class="container ion-margin-top" fill="outline" expand="block">
-                Termos de Licença e Uso
-            </ion-button>
-            <ion-button (click)="goTo('politica')" class="container ion-margin-top" fill="outline" expand="block">
-                Política de Privacidade
-            </ion-button>
-            <ng-container>
-                <ion-button *ngIf="!userClass.anon" class="container ion-margin-top" (click)="presentAlertConfirm()" color="tertiary" expand="block">
-                    <ion-label color="light">Deletar conta</ion-label>
-                </ion-button>
-            </ng-container>
+          <ion-button
+            (click)="checkSocio()"
+            class="ion-margin-top container"
+            expand="block"
+          >
+            Área do Sócio
+          </ion-button>
         </ng-container>
-    </div>
-
+      </ng-container>
+      <ng-container>
+        <ion-button
+          *ngIf="userClass.anon"
+          (click)="logout()"
+          color="primary"
+          class="ion-margin-top container"
+          expand="block"
+        >
+          <ion-label color="light">VOLTAR PARA AUTENTICAÇÃO</ion-label>
+        </ion-button>
+      </ng-container>
+      <ion-button
+        (click)="goTo('licenca')"
+        class="container ion-margin-top"
+        fill="outline"
+        expand="block"
+      >
+        Termos de Licença e Uso
+      </ion-button>
+      <ion-button
+        (click)="goTo('politica')"
+        class="container ion-margin-top"
+        fill="outline"
+        expand="block"
+      >
+        Política de Privacidade
+      </ion-button>
+      <ng-container>
+        <ion-button
+          *ngIf="!userClass.anon"
+          class="container ion-margin-top"
+          (click)="presentAlertConfirm()"
+          color="tertiary"
+          expand="block"
+        >
+          <ion-label color="light">Deletar conta</ion-label>
+        </ion-button>
+      </ng-container>
+    </ng-container>
+  </div>
 </ion-content>
-
 
 <app-tab></app-tab>

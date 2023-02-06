@@ -6,7 +6,7 @@ import { MenuService } from './services/menu/menu.service';
 import { WhiteLabelService } from 'src/app/services/white-label/white-label.service';
 import { environment } from 'src/environments/environment';
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/firebase/auth.service';
 import { UserClass } from './classes/users/user';
 import { MasterService } from './services/master/master.service';
@@ -46,10 +46,10 @@ export class AppComponent {
         this.screenOrientation.lockPortrait();
       });
     }
-    this.remoteConfig.init().then(() => {
+    this.remoteConfig.init().then((res) => {
       this.remoteConfig.done = true;
       this.nofity.init();
-      this.themer.setTheme(this.whiteLabel.app.color);
+      // this.themer.setTheme(this.whiteLabel.app.color);
       this.auth.getAuth().onAuthStateChanged((user) => {
         if (user) {
           this.master.setUser(user.uid);
